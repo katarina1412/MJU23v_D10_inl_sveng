@@ -20,6 +20,7 @@
         {
             string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
+            // NYI Det finns inget menysystem implementerat
             do
             {
                 Console.Write("> ");
@@ -28,11 +29,13 @@
                 if (command == "quit")
                 {
                     Console.WriteLine("Goodbye!");
+                    // FIXME programmet inte avslutar med "QUIT"
                 }
                 else if (command == "load")
                 {
                     if(argument.Length == 2)
-                    {
+
+                    {   // FIXME programmet kraschar
                         using (StreamReader sr = new StreamReader(argument[1]))
                         {
                             dictionary = new List<SweEngGloss>(); // Empty it!
@@ -49,6 +52,7 @@
                     {
                         using (StreamReader sr = new StreamReader(defaultFile))
                         {
+                            //NYI Inget medelande om att ordlistan har laddats
                             dictionary = new List<SweEngGloss>(); // Empty it!
                             string line = sr.ReadLine();
                             while (line != null)
@@ -62,12 +66,19 @@
                 }
                 else if (command == "list")
                 {
-                    foreach(SweEngGloss gloss in dictionary)
+                    //FIXME programmet kraschar om vi inte har laddat in ordlistan
+                    //TODO Meddelande om att ordboken ska läsas först
+
+                    
+                    foreach (SweEngGloss gloss in dictionary)
                     {
                         Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
                     }
                 }
                 else if (command == "new")
+
+                // FIXME programmet kraschar om vi inte har laddat in ordlistan
+                //TODO Meddelande om att ordboken ska läsas först
                 {
                     if (argument.Length == 3)
                     {
@@ -84,6 +95,12 @@
                 }
                 else if (command == "delete")
                 {
+
+                    //FIXME programmet kraschar om vi inte har laddat in ordlistan
+                    //TODO Meddelande om att ordboken ska läsas först
+                    // FIXME programmet kraschar om ord  inte finns
+
+
                     if (argument.Length == 3)
                     {
                         int index = -1;
@@ -112,6 +129,10 @@
                 }
                 else if (command == "translate")
                 {
+                    //FIXME programmet kraschar om vi inte har laddat in ordlistan
+                    //TODO Meddelande om att ordboken ska läsas först
+
+                    // FIXME programmet kraschar om ord  inte finns
                     if (argument.Length == 2)
                     {
                         foreach(SweEngGloss gloss in dictionary)
@@ -124,6 +145,7 @@
                     }
                     else if (argument.Length == 1)
                     {
+                        
                         Console.WriteLine("Write word to be translated: ");
                         string s = Console.ReadLine();
                         foreach (SweEngGloss gloss in dictionary)
@@ -135,6 +157,7 @@
                         }
                     }
                 }
+                //NYI HELP menyn
                 else
                 {
                     Console.WriteLine($"Unknown command: '{command}'");
