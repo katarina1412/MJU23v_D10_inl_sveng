@@ -33,6 +33,8 @@
                 if (command == "quit")
                 {
                     Console.WriteLine("Goodbye!");
+                    break;
+                    
                     // FIXME programmet inte avslutar med "QUIT"
                 }
                
@@ -164,8 +166,22 @@
                     }
                 }
                 //NYI HELP menyn
+                else if (command == "help")
+                {
+                    Console.WriteLine("help        Avalible commands");
+                    Console.WriteLine("quit        End of program ");
+                    Console.WriteLine("delete      The word is removed from the dictionary");
+                    Console.WriteLine("load        Load words data from the file sweeng.lis   ");
+                    Console.WriteLine("list        A list of words is showed   ");
+                    Console.WriteLine("translate   Translation of words  ");
+                    Console.WriteLine("new         New word");
 
-               
+
+       
+
+                }
+
+
 
                 else
                 {
