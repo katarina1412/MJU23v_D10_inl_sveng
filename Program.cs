@@ -43,8 +43,8 @@
                 if (command == "quit")
                 {
                     Console.WriteLine("Goodbye!");
-                    //FIXME - When selecting quit, the application does not exit
-                    // TODO: Add code to exit the loop and close the application
+                   break;
+                    
                 }
                 else if (command == "load")
                 // TODO: Remove duplicate commands
@@ -197,8 +197,7 @@
                 }
             }
 
-            //NYI  HELP
-            // TODO: Implement the help function.
+            
             while (true);
         }
     }
