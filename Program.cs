@@ -88,7 +88,7 @@
                 {
                     // FIXME: The program crashes if we haven't loaded the dictionary.
                     // TODO: Message about reading the dictionary first.
-                    
+
 
                     foreach (SweEngGloss gloss in dictionary)
                     {
@@ -174,8 +174,24 @@
                         }
                     }
                 }
+
+                else if (command == "help")
+                {
+                    Console.WriteLine("help        Avalible commands");
+                    Console.WriteLine("quit         End of program ");
+                    Console.WriteLine("delete      The word is removed from the dictionary");
+                    Console.WriteLine("load        load words data from the file sweeng.lis   ");
+                    Console.WriteLine("list        a list of words is showed   ");
+                    Console.WriteLine("translate        a list of words is showed   ");
+                    Console.WriteLine("new         The program first asks for a word in  Swedish, then in English");//create new word
+                    Console.WriteLine("english     Translation from Swedish to English ");
+                    Console.WriteLine("new         The program first asks for a word in  Swedish, then in English");//create new word
+                    Console.WriteLine("swedish     Translation from English to Swedish ");
+
+                }
+
                 else
-                { 
+                {
                     // TODO: Handle unknown command.
                     Console.WriteLine($"Unknown command: '{command}'");
                 }
