@@ -20,6 +20,8 @@
         {
             string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
+            //NYI  The menu system is not implemented, so we don't know how to use the application.
+            //todo:Implement the menu system
             do
             {
                 Console.Write("> ");
@@ -28,10 +30,18 @@
                 if (command == "quit")
                 {
                     Console.WriteLine("Goodbye!");
+                    //FIXME - When selecting quit, the application does not exit
+                    // TODO: Add code to exit the loop and close the application
                 }
                 else if (command == "load")
+                // TODO: Remove duplicate commands
+
+
                 {
                     if (argument.Length == 2)
+
+
+                    // FIXME: The program crashes
                     {
                         using (StreamReader sr = new StreamReader(argument[1]))
                         {
@@ -49,6 +59,7 @@
                     {
                         using (StreamReader sr = new StreamReader(defaultFile))
                         {
+                            // NYI: No message about the dictionary being loaded.
                             dictionary = new List<SweEngGloss>(); // Empty it!
                             string line = sr.ReadLine();
                             while (line != null)
@@ -62,6 +73,10 @@
                 }
                 else if (command == "list")
                 {
+                    // FIXME: The program crashes if we haven't loaded the dictionary.
+                    // TODO: Message about reading the dictionary first.
+                    
+
                     foreach (SweEngGloss gloss in dictionary)
                     {
                         Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
@@ -69,12 +84,14 @@
                 }
                 else if (command == "new")
                 {
+                    // NYI: Implement adding new words to the dictionary.
+                    // TODO: Implement adding new words to the dictionary.
                     if (argument.Length == 3)
                     {
                         dictionary.Add(new SweEngGloss(argument[1], argument[2]));
                     }
                     else if (argument.Length == 1)
-                    {
+                    {  // TODO Change single-letter variables name
                         Console.WriteLine("Write word in Swedish: ");
                         string s = Console.ReadLine();
                         Console.Write("Write word in English: ");
@@ -83,6 +100,10 @@
                     }
                 }
                 else if (command == "delete")
+
+                // FIXME: The program crashes if the dictionary hasn't been loaded.
+                // TODO: Message about reading the dictionary first.
+                // FIXME: The program crashes if the word doesn't exist.
                 {
                     if (argument.Length == 3)
                     {
@@ -96,7 +117,7 @@
                         dictionary.RemoveAt(index);
                     }
                     else if (argument.Length == 1)
-                    {
+                    { // TODO Change single-letter variables name
                         Console.WriteLine("Write word in Swedish: ");
                         string s = Console.ReadLine();
                         Console.Write("Write word in English: ");
@@ -113,6 +134,10 @@
                 }
                 else if (command == "translate")
                 {
+                    // FIXME: The program crashes if the dictionary hasn't been loaded.
+                    // TODO: Message about reading the dictionary first.
+                    // FIXME: The program crashes if the word doesn't exist.
+
                     if (argument.Length == 2)
                     {
                         foreach (SweEngGloss gloss in dictionary)
@@ -137,10 +162,14 @@
                     }
                 }
                 else
-                {
+                { 
+                    // TODO: Handle unknown command.
                     Console.WriteLine($"Unknown command: '{command}'");
                 }
             }
+
+            //NYI  HELP
+            // TODO: Implement the help function.
             while (true);
         }
     }
