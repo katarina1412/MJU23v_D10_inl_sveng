@@ -86,13 +86,16 @@
                 }
                 else if (command == "list")
                 {
-                    // FIXME: The program crashes if we haven't loaded the dictionary.
-                    // TODO: Message about reading the dictionary first.
-
+                    
+                    if (dictionary == null)
+                    {
+                        Console.WriteLine("First, you need to load the dictionary!");
+                    }
 
                     foreach (SweEngGloss gloss in dictionary)
                     {
-                        Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+                        Console.WriteLine($"{
+                            gloss.word_swe,-10}  - {gloss.word_eng,-10}");
                     }
                 }
                 else if (command == "new")
