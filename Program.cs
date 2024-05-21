@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static List<SweEngGloss> dictionary;
+        static List<SweEngGloss> dictionary = null;// Added initial state for the dictionary
         class SweEngGloss
         {
             public string word_swe, word_eng;
@@ -18,7 +18,7 @@
         }
         static void Main(string[] args)
         {
-            string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
+            string defaultFile = @"C:\Users\kkata\source\repos\uppgift1\sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
             Console.WriteLine("Avaliable commands: ");
             Console.WriteLine("help        Avalible commands");
@@ -31,8 +31,6 @@
 
 
             Console.WriteLine("english     Translation from Swedish to English ");
-            Console.WriteLine("new         The program first asks for a word in  Swedish, then in English");//create new word
-
             Console.WriteLine("swedish     Translation from English to Swedish ");
             
             do
@@ -42,48 +40,60 @@
                 string command = argument[0];
                 if (command == "quit")
                 {
-                    Console.WriteLine("Goodbye!");
+                    Console.WriteLine("Goodbye!"); 
                    break;
                     
                 }
+
+
                 else if (command == "load")
-                // TODO: Remove duplicate commands
-
-
                 {
-                    if (argument.Length == 2)
-
-
-                    // FIXME: The program crashes
+                    try
                     {
-                        using (StreamReader sr = new StreamReader(argument[1]))
+                        string file = "";
+                        if (argument.Length == 2)
                         {
-                            dictionary = new List<SweEngGloss>(); // Empty it!
-                            string line = sr.ReadLine();
-                            while (line != null)
+                            file = argument[1];
+                        }
+                        else if (argument.Length == 1)
+                        {
+                            file = defaultFile;
+                        }
+                        else if (argument.Length > 2)
+                        {
+                            Console.WriteLine("Invalid command format");
+                            continue; 
+                        }
+
+                        if (File.Exists(file))
+                        {
+                            dictionary = new List<SweEngGloss>(); // Clearing the dictionary
+                            using (StreamReader sr = new StreamReader(file))
                             {
-                                SweEngGloss gloss = new SweEngGloss(line);
-                                dictionary.Add(gloss);
-                                line = sr.ReadLine();
+                                string line;
+                                while ((line = sr.ReadLine()) != null)
+                                {
+                                    SweEngGloss gloss = new SweEngGloss(line);
+                                    dictionary.Add(gloss);
+                                }
                             }
+                            Console.WriteLine("Dictionary successfully loaded!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("File does not exist!");
                         }
                     }
-                    else if (argument.Length == 1)
+                    catch (Exception ex)
                     {
-                        using (StreamReader sr = new StreamReader(defaultFile))
-                        {
-                            // NYI: No message about the dictionary being loaded.
-                            dictionary = new List<SweEngGloss>(); // Empty it!
-                            string line = sr.ReadLine();
-                            while (line != null)
-                            {
-                                SweEngGloss gloss = new SweEngGloss(line);
-                                dictionary.Add(gloss);
-                                line = sr.ReadLine();
-                            }
-                        }
+                        Console.WriteLine($"An error occurred: {ex.Message}");
                     }
                 }
+
+
+
+               
+
                 else if (command == "list")
                 {
                     
@@ -100,20 +110,26 @@
                 }
                 else if (command == "new")
                 {
+
                     // NYI: Implement adding new words to the dictionary.
-                    // TODO: Implement adding new words to the dictionary.
+                    // TODO: Implement adding new words to the dictionary
+
                     if (argument.Length == 3)
                     {
                         dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+                       
                     }
                     else if (argument.Length == 1)
-                    {  // TODO Change single-letter variables name
+                    {  
                         Console.WriteLine("Write word in Swedish: ");
                         string swedish = Console.ReadLine();
                         Console.Write("Write word in English: ");
                         string english = Console.ReadLine();
                         dictionary.Add(new SweEngGloss(swedish, english));
+                        
                     }
+
+                   
                 }
                 else if (command == "delete")
 
@@ -133,7 +149,7 @@
                         dictionary.RemoveAt(index);
                     }
                     else if (argument.Length == 1)
-                    { // TODO Change single-letter variables name
+                    { 
                         Console.WriteLine("Write word in Swedish: ");
                         string swedish = Console.ReadLine();
                         Console.Write("Write word in English: ");
@@ -188,7 +204,6 @@
                     Console.WriteLine("translate        a list of words is showed   ");
                     Console.WriteLine("new         The program first asks for a word in  Swedish, then in English");//create new word
                     Console.WriteLine("english     Translation from Swedish to English ");
-                    Console.WriteLine("new         The program first asks for a word in  Swedish, then in English");//create new word
                     Console.WriteLine("swedish     Translation from English to Swedish ");
 
                 }
