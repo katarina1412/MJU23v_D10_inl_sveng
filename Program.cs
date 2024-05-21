@@ -111,25 +111,31 @@
                 else if (command == "new")
                 {
 
-                    // NYI: Implement adding new words to the dictionary.
-                    // TODO: Implement adding new words to the dictionary
-
-                    if (argument.Length == 3)
+                    if (dictionary == null || dictionary.Count == 0)
                     {
-                        dictionary.Add(new SweEngGloss(argument[1], argument[2]));
-                       
+                        Console.WriteLine("First, you need to load or create the dictionary");
                     }
-                    else if (argument.Length == 1)
-                    {  
-                        Console.WriteLine("Write word in Swedish: ");
-                        string swedish = Console.ReadLine();
-                        Console.Write("Write word in English: ");
-                        string english = Console.ReadLine();
-                        dictionary.Add(new SweEngGloss(swedish, english));
-                        
+                    else
+                    {
+                        if (argument.Length == 3)
+                        {
+                            dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+                            Console.WriteLine("Successfully added a word to the dictionary!");
+                        }
+                        else if (argument.Length == 1)
+                        {
+                            Console.WriteLine("Write word in Swedish: ");
+                            string swedish = Console.ReadLine();
+                            Console.Write("Write word in English: ");
+                            string english = Console.ReadLine();
+                            dictionary.Add(new SweEngGloss(swedish, english));
+                            Console.WriteLine("Successfully added a word to the dictionary");
+                        }
                     }
 
                    
+
+
                 }
                 else if (command == "delete")
 
