@@ -20,8 +20,21 @@
         {
             string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
-            //NYI  The menu system is not implemented, so we don't know how to use the application.
-            //todo:Implement the menu system
+            Console.WriteLine("Avaliable commands: ");
+            Console.WriteLine("help        Avalible commands");
+            Console.WriteLine("quit         End of program ");
+            Console.WriteLine("delete      The word is removed from the dictionary");
+            Console.WriteLine("load        load words data from the file sweeng.lis   ");
+            Console.WriteLine("list        a list of words is showed   ");
+            Console.WriteLine("translate        a list of words is showed   ");
+            Console.WriteLine("new         The program first asks for a word in  Swedish, then in English");//create new word
+
+
+            Console.WriteLine("english     Translation from Swedish to English ");
+            Console.WriteLine("new         The program first asks for a word in  Swedish, then in English");//create new word
+
+            Console.WriteLine("swedish     Translation from English to Swedish ");
+            
             do
             {
                 Console.Write("> ");
