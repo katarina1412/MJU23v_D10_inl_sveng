@@ -139,36 +139,61 @@
                 }
                 else if (command == "delete")
 
-                // FIXME: The program crashes if the dictionary hasn't been loaded.
-                // TODO: Message about reading the dictionary first.
-                // FIXME: The program crashes if the word doesn't exist.
+                
                 {
-                    if (argument.Length == 3)
+                    if (dictionary == null)
                     {
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++)
-                        {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
-                                index = i;
-                        }
-                        dictionary.RemoveAt(index);
+                        Console.WriteLine("First, you need to load or create the dictionary!");
                     }
-                    else if (argument.Length == 1)
-                    { 
-                        Console.WriteLine("Write word in Swedish: ");
-                        string swedish = Console.ReadLine();
-                        Console.Write("Write word in English: ");
-                        string english = Console.ReadLine();
-                        int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++)
+                    else
+                    {
+                        string swedish = "";
+                        string english = "";
+                        if (argument.Length == 3)
                         {
-                            SweEngGloss gloss = dictionary[i];
-                            if (gloss.word_swe == swedish && gloss.word_eng == english)
-                                index = i;
+                            swedish = argument[1];
+                            english = argument[2];
+
                         }
-                        dictionary.RemoveAt(index);
+                        else if (argument.Length == 1)
+                        {
+
+                            Console.WriteLine("Write word in Swedish: ");
+                            swedish = Console.ReadLine();
+                            Console.Write("Write word in English: ");
+                            english = Console.ReadLine();
+
+                        }
+                        else if (argument.Length != 1 || argument.Length != 3)
+                        {
+                            Console.WriteLine("You have not entered the command in the correct format!");
+                        }
+
+
+                        if (argument.Length == 1 || argument.Length == 3)
+                        {
+                            int index = -1;
+                            for (int i = 0; i < dictionary.Count; i++)
+                            {
+                                SweEngGloss gloss = dictionary[i];
+                                if (gloss.word_swe == swedish && gloss.word_eng == english)
+                                    index = i;
+                            }
+
+                            if (index == -1)
+                            {
+                                Console.WriteLine("The word does not exist in the dictionary.");
+                            }
+                            else
+                            {
+                                dictionary.RemoveAt(index);
+                                Console.WriteLine("Word has been successfully deleted!");
+                            }
+
+                        }
                     }
+
+
                 }
                 else if (command == "translate")
                 {
